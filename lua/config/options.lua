@@ -1,4 +1,11 @@
--- set up all the options
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+vim.g.autoformat = true
+vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 vim.opt.number = true
 vim.opt.relativenumber = true

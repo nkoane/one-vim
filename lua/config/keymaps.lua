@@ -1,4 +1,5 @@
 -- setup all the keymappings
+vim.keymap.set("i", "jk", "<esc>", { desc = "escape to normal mode" })
 
 -- clear highlight with <Esc>
 vim.keymap.set({ 'n', 'i' }, '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'clear search highlight ' })
