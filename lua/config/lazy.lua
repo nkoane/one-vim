@@ -22,16 +22,16 @@ require('lazy').setup {
 
     -- i want to be in control so i know what does what
 
-    { import = 'plugins/tokyonight' },
+    { import = 'plugins/themes' },
     { import = 'plugins/mini' },
     { import = 'plugins/dressing' },
     { import = 'plugins/fzf-lua' },
 
     { import = 'plugins/which-key' },
     { import = 'plugins/git-signs' },
-    { import = 'plugins/autopairs' },
+    { import = 'plugins/autopairs' }, -- this adds pairs of quotes, brackets, et al
 
-    { import = 'plugins/persist' },
+    { import = 'plugins/persist' }, -- the following plugin is for persisting the session
 
     { import = 'plugins/notify' },
     { import = 'plugins/lualine' },
