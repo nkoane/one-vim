@@ -3,16 +3,18 @@ return
     "nvimdev/dashboard-nvim",
     lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
     opts = function()
-        local logo = [[
-           ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-           ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
-           ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
-           ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
-           ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
-           ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
-      ]]
-
-        logo = string.rep("\n", 8) .. logo .. "\n\n"
+        local ltdn = [[
+        _____/\\\\\\\_________/\\\_        
+         ___/\\\/////\\\___/\\\\\\\_       
+          __/\\\____\//\\\_\/////\\\_      
+           _\/\\\_____\/\\\_____\/\\\_     
+            _\/\\\_____\/\\\_____\/\\\_    
+             _\/\\\_____\/\\\_____\/\\\_   
+              _\//\\\____/\\\______\/\\\_  
+               __\///\\\\\\\/_______\/\\\_ 
+                ____\///////_________\///_ 
+        ]]
+        logo = string.rep("\n", 2) .. ltdn .. "\n\n"
 
         local opts = {
             theme = "doom",
@@ -28,11 +30,11 @@ return
                     { action = require('fzf-lua').files, desc = " Find File", icon = " ", key = "f" },
                     { action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
                     { action = require('fzf-lua').oldfiles, desc = " Recent Files", icon = " ", key = "r" },
-                    { action = require('fzf-lua').live_grep, desc = " Find Text", icon = " ", key = "g" },
-                    { action = require('fzf-lua').profiles, desc = " Config", icon = " ", key = "c" },
+                    -- { action = require('fzf-lua').live_grep, desc = " Find Text", icon = " ", key = "g" },
+                    -- { action = require('fzf-lua').profiles, desc = " Config", icon = " ", key = "c" },
                     { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
                     -- { action = "LazyExtras", desc = " Lazy Extras", icon = " ", key = "x" },
-                    { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
+                    -- { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
                     { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "q" },
                 },
                 footer = function()
