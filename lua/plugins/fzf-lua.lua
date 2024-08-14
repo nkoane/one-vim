@@ -17,6 +17,7 @@ return {
     vim.keymap.set('n', '<leader>fb', require('fzf-lua').buffers, { desc = 'Find Buffers' })
     vim.keymap.set('n', '<leader>fh', require('fzf-lua').help_tags, { desc = 'Find Help' })
     vim.keymap.set('n', '<leader>fr', require('fzf-lua').oldfiles, { desc = 'Find Recent Files' })
+    vim.keymap.set('n', '<leader>fz', require('fzf-lua').live_grep, { desc = 'Find Text' })
     vim.keymap.set('n', '<leader>fa', require('fzf-lua').lsp_code_actions, { desc = 'Find Code Actions' })
     vim.keymap.set('n', "<leader>sk", require('fzf-lua').keymaps, { desc = "Key Maps" })
   end

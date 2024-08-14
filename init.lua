@@ -6,8 +6,8 @@ if vim.g.vscode then
 	-- require("code.plugins")
 else
 	-- ordinary Neovim
-	require("config.lazy")
 	require("config.keymaps")
 	require("config.options")
+	require("config.lazy")
 	-- require("config.setttings")
 end
