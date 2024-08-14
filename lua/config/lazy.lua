@@ -39,7 +39,8 @@ require("lazy").setup({
 
         { import = 'plugins/dashboard' },
         { import = 'plugins/neotree' },
-        -- { import = 'plugins/treesitter' },
+        { import = 'plugins/treesitter' },
+
         -- { import = 'plugins/completion' },
         -- { import = 'plugins/lsp' },
     },
