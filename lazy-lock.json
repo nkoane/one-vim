@@ -1,0 +1,7 @@
+{
+  "dressing.nvim": { "branch": "master", "commit": "6741f1062d3dc6e4755367a7e9b347b553623f04" },
+  "fzf-lua": { "branch": "main", "commit": "8f9c3a2e308755c25630087f3c5d35786803cfd0" },
+  "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
+  "mini.nvim": { "branch": "main", "commit": "cf81e70e8f1fdc36a3c684efc45c4ee561285137" },
+  "nvim-lspconfig": { "branch": "master", "commit": "a67bc39aaa4f1e13212c5022a561120846eaef27" }
+}
