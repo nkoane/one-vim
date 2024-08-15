@@ -22,35 +22,36 @@ require('lazy').setup {
 
     -- i want to be in control so i know what does what
 
-    { import = 'plugins/themes' },
-    { import = 'plugins/mini' },
-    { import = 'plugins/dressing' },
-    { import = 'plugins/fzf-lua' },
-
+      { import = 'plugins/themes' },
+      { import = 'plugins/mini' },
     { import = 'plugins/which-key' },
-    { import = 'plugins/git-signs' },
-    { import = 'plugins/autopairs' }, -- this adds pairs of quotes, brackets, et al
+    { import = 'plugins/fzf-lua' },
+    -- { import = 'plugins/dressing' },
 
-    { import = 'plugins/persist' }, -- the following plugin is for persisting the session
+    -- { import = 'plugins/git-signs' },
+    -- { import = 'plugins/autopairs' }, -- this adds pairs of quotes, brackets, et al
 
-    { import = 'plugins/notify' },
+    -- { import = 'plugins/persist' }, -- the following plugin is for persisting the session
+
+    -- { import = 'plugins/notify' },
     { import = 'plugins/lualine' },
-    { import = 'plugins/noice' },
-    { import = 'plugins/flash' },
+    -- { import = 'plugins/noice' },
+    -- { import = 'plugins/flash' },
+    -- { import = 'plugins/trouble' },
 
-    { import = 'plugins/dashboard' },
-    { import = 'plugins/neotree' },
-    { import = 'plugins/comments' },
+    -- { import = 'plugins/dashboard' },
+    -- { import = 'plugins/neotree' },
+    -- { import = 'plugins/comments' },
 
-    { import = 'plugins/treesitter' },
-    { import = 'plugins/lisp' },
-    { import = 'plugins/formatter' },
-    { import = 'plugins/completion' },
-    { import = 'plugins/copilot' },
+    -- { import = 'plugins/treesitter' },
+    -- { import = 'plugins/lisp' },
+    -- { import = 'plugins/formatter' },
+    -- { import = 'plugins/completion' },
+    -- { import = 'plugins/copilot' },
 
     -- extra
 
-    { import = 'plugins/blade' },
+    -- { import = 'plugins/blade' },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
