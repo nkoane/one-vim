@@ -43,13 +43,13 @@ require('lazy').setup {
 
     { import = 'plugins/treesitter' },
     { import = 'plugins/lisp' },
+    { import = 'plugins/formatter' },
+    { import = 'plugins/completion' },
     { import = 'plugins/copilot' },
-    -- { import = 'plugins/lsp' },
-    -- { import = 'plugins/lsp/formatter' },
-    -- { import = 'plugins/lsp/linter' },
 
-    -- { import = 'plugins/completion' },
-    -- { import = 'plugins/lsp' },
+    -- extra
+
+    { import = 'plugins/blade' },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
