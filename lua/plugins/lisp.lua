@@ -1,4 +1,30 @@
 -- NOTE: Here is where you install your plugins.
+
+local servers = {
+  tsserver = {},
+  svelte = {},
+  cssls = {},
+  emmet_language_server = {},
+  tailwindcss = {},
+
+  intelephense = {
+    cmd = { 'intelephense', '--stdio' },
+    filetypes = { 'php', 'blade' },
+  },
+
+  -- phpactor = {},
+
+  stimulus_ls = {
+    filetypes = { 'php', 'blade' },
+  },
+
+  rust_analyzer = {},
+
+  lua_ls = {},
+}
+
+-- https://github.com/calebdw/dotfiles/blob/master/.config/nvim/lua/calebdw/plugins/lsp.lua
+
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -17,19 +43,51 @@ return {
   },
   { 'Bilal2453/luvit-meta', lazy = true },
   {
+    'williamboman/mason-lspconfig.nvim',
+    opts = {
+      automatic_installation = true,
+      ensure_installed = servers,
+    },
+  },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    opts = {
+      auto_update = true,
+      start_delay = 500,
+
+      ensure_installed = {
+        -- LSP
+        'tsserver', -- Used for TypeScript
+        'intelephense', -- Used for PHP
+        'tailwindcss-language-server', -- Used for TailwindCSS
+        -- DAP
+        'php-debug-adpter',
+        -- Linters
+        'tlint',
+        'biome',
+
+        -- Formatters
+        'prettierd',
+        'sql-formatter',
+        'tlint',
+      },
+    },
+  },
+  -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+  {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
-
+      'williamboman/mason-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
+      local lsp = require 'lspconfig'
+      local configs = require 'lspconfig.configs'
+      local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -81,35 +139,34 @@ return {
         end,
       })
 
+      --[[
+      local handlers = {
+        -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#use-nvim-notify-to-display-lsp-messages
+        ['window/showMessage'] = function(_, result, ctx)
+          local client = vim.lsp.get_client_by_id(ctx.client_id)
+          if client == nil then
+            return
+          end
+          local lvl = ({ 'ERROR', 'WARN', 'INFO', 'DEBUG' })[result.type]
+          vim.notify(result.message, lvl, {
+            title = 'LSP | ' .. client.name,
+            timeout = 10000,
+            keep = function()
+              return lvl == 'ERROR' or lvl == 'WARN'
+            end,
+          })
+        end,
+        ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+          border = 'rounded',
+        }),
+        ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+          border = 'rounded',
+        }),
+      }
+      ]]
+
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-      local servers = {
-        tsserver = {},
-        svelte = {},
-        intelephense = {
-          cmd = { 'intelephense', '--stdio' },
-          filetypes = { 'php', 'blade' },
-        },
-        emmet_language_server = {},
-        tailwindcss = {},
-        stimulus_ls = {
-          filetypes = { 'php', 'blade' },
-        },
-
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-            },
-          },
-        },
-      }
 
       require('mason').setup()
 
@@ -133,5 +190,26 @@ return {
         },
       }
     end,
+  },
+  { 'glepnir/lspsaga.nvim' }, -- UI for LSP client
+  { -- ui for lsp progress
+    'j-hui/fidget.nvim',
+    tag = 'legacy',
+  },
+  {
+    'smjonas/inc-rename.nvim',
+    opts = {
+      save_in_cmd_history = false,
+    },
+    keys = {
+      {
+        '<leader>rn',
+        function()
+          return ':IncRename ' .. vim.fn.expand '<cword>'
+        end,
+        expr = true,
+        desc = 'Incremental Rename',
+      },
+    },
   },
 }
