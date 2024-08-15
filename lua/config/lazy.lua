@@ -47,9 +47,10 @@ require('lazy').setup {
     { import = 'plugins/lisp' },
     { import = 'plugins/formatter' },
     { import = 'plugins/completion' },
-    { import = 'plugins/copilot' },
+    -- { import = 'plugins/copilot' },
 
-    { import = 'plugins/lazygit' }, -- the following plugin is for persisting the session
+    -- { import = 'plugins/lazygit' },
+
     -- extra
 
     -- { import = 'plugins/blade' },
