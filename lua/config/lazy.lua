@@ -36,6 +36,7 @@ require('lazy').setup {
     { import = 'plugins/notify' },
     { import = 'plugins/lualine' },
     { import = 'plugins/noice' },
+    { import = 'plugins/flash' },
 
     { import = 'plugins/dashboard' },
     { import = 'plugins/neotree' },
