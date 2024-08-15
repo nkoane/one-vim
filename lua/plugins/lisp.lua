@@ -94,18 +94,18 @@ return {
           local map = function(keys, func, desc)
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
-          map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
-          map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
-          map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
-          map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          -- map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
+          -- map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
+          -- map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
+          -- map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
+          -- map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
+          -- map('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
+          -- map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          --
+          -- -- WARN: This is not Goto Definition, this is Goto Declaration.
+          -- --  For example, in C this would take you to the header.
+          -- map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
@@ -132,38 +132,13 @@ return {
           end
           -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', function()
+            map('<leader>uh', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
         end,
       })
 
-      --[[
-      local handlers = {
-        -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#use-nvim-notify-to-display-lsp-messages
-        ['window/showMessage'] = function(_, result, ctx)
-          local client = vim.lsp.get_client_by_id(ctx.client_id)
-          if client == nil then
-            return
-          end
-          local lvl = ({ 'ERROR', 'WARN', 'INFO', 'DEBUG' })[result.type]
-          vim.notify(result.message, lvl, {
-            title = 'LSP | ' .. client.name,
-            timeout = 10000,
-            keep = function()
-              return lvl == 'ERROR' or lvl == 'WARN'
-            end,
-          })
-        end,
-        ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-          border = 'rounded',
-        }),
-        ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-          border = 'rounded',
-        }),
-      }
-      ]]
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())

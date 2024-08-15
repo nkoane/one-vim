@@ -22,33 +22,34 @@ require('lazy').setup {
 
     -- i want to be in control so i know what does what
 
-      { import = 'plugins/themes' },
-      { import = 'plugins/mini' },
+    { import = 'plugins/themes' },
+    { import = 'plugins/mini' },
     { import = 'plugins/which-key' },
     { import = 'plugins/fzf-lua' },
-    -- { import = 'plugins/dressing' },
+    { import = 'plugins/dressing' },
 
-    -- { import = 'plugins/git-signs' },
-    -- { import = 'plugins/autopairs' }, -- this adds pairs of quotes, brackets, et al
+    { import = 'plugins/git-signs' },
+    { import = 'plugins/autopairs' }, -- this adds pairs of quotes, brackets, et al
 
-    -- { import = 'plugins/persist' }, -- the following plugin is for persisting the session
+    { import = 'plugins/persist' }, -- the following plugin is for persisting the session
 
-    -- { import = 'plugins/notify' },
+    { import = 'plugins/notify' },
     { import = 'plugins/lualine' },
-    -- { import = 'plugins/noice' },
-    -- { import = 'plugins/flash' },
-    -- { import = 'plugins/trouble' },
+    { import = 'plugins/noice' },
+    { import = 'plugins/flash' },
+    { import = 'plugins/trouble' },
 
-    -- { import = 'plugins/dashboard' },
-    -- { import = 'plugins/neotree' },
-    -- { import = 'plugins/comments' },
+    { import = 'plugins/dashboard' },
+    { import = 'plugins/neotree' },
+    { import = 'plugins/comments' },
 
-    -- { import = 'plugins/treesitter' },
-    -- { import = 'plugins/lisp' },
-    -- { import = 'plugins/formatter' },
-    -- { import = 'plugins/completion' },
-    -- { import = 'plugins/copilot' },
+    { import = 'plugins/treesitter' },
+    { import = 'plugins/lisp' },
+    { import = 'plugins/formatter' },
+    { import = 'plugins/completion' },
+    { import = 'plugins/copilot' },
 
+    { import = 'plugins/lazygit' }, -- the following plugin is for persisting the session
     -- extra
 
     -- { import = 'plugins/blade' },

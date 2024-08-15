@@ -108,30 +108,7 @@ return {
         },
       },
     },
-    ---@param opts TSConfig
-    config = function(_, opts)
-      -- local map = require('calebdw.util').map
-      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-
-      parser_config.blade = {
-        install_info = {
-          url = 'https://github.com/EmranMR/tree-sitter-blade',
-          files = {
-            'src/parser.c',
-            -- 'src/scanner.cc',
-          },
-          generate_requires_npm = true,
-          requires_generate_from_grammar = true,
-        },
-      }
-      -- opts.ensure_installed, { "blade" }
-      require('nvim-treesitter.configs').setup(opts)
-
-      vim.keymap.set('n', '<leader>it', vim.treesitter.inspect_tree)
-      vim.keymap.set('n', '<leader>i', vim.show_pos)
-    end,
   },
-
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
     event = 'VeryLazy',
