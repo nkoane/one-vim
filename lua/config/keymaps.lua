@@ -1,14 +1,14 @@
 -- setup all the keymappings
-vim.keymap.set("i", "jk", "<esc>", { desc = "escape to normal mode" })
+vim.keymap.set('i', 'jk', '<esc>', { desc = 'escape to normal mode' })
 
 -- clear highlight with <Esc>
 vim.keymap.set({ 'n', 'i' }, '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'clear search highlight ' })
 
 -- Diagnostic keymaps
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
--- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- exit terminal
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -36,3 +36,11 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 -- better indenting
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+
+-- better exit: <Esc><Esc> show exit everything and anything, in all modes
+vim.keymap.set({ 'n', 'i', 'v', 'x', 't' }, '<Esc><Esc>', '<C-c>', { desc = 'Exit everything ' })
+
+-- quit with Qa in command mode, this is to manage my dyslexia :grin:
+vim.cmd 'command! Qa quitall'
+
+--

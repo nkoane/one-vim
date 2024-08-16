@@ -1,8 +1,8 @@
 return {
-{
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+  {
+    'folke/todo-comments.nvim',
+    cmd = { 'TodoTrouble', 'TodoTelescope' },
+    event = { 'BufReadPost', 'BufNewFile', 'BufWritePre', 'VeryLazy' },
     opts = {},
     -- stylua: ignore
     keys = {
@@ -12,8 +12,8 @@ return {
       { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
       -- { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
       -- { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
-        { "<leader>st", function() require("todo-comments.fzf").todo() end, desc = "Todo" },
-        { "<leader>sT", function () require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
+      { "<leader>st", function() require("todo-comments.fzf").todo() end, desc = "Todo" },
+      { "<leader>sT", function () require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
     },
-  }
+  },
 }
