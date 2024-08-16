@@ -1,5 +1,5 @@
 -- setup all the keymappings
-vim.keymap.set("i", "jk", "<esc>", { desc = "escape to normal mode" })
+vim.keymap.set('i', 'jk', '<esc>', { desc = 'escape to normal mode' })
 
 -- clear highlight with <Esc>
 vim.keymap.set({ 'n', 'i' }, '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'clear search highlight ' })
@@ -36,3 +36,11 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 -- better indenting
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+
+-- better exit: <Esc><Esc> show exit everything and anything, in all modes
+vim.keymap.set({ 'n', 'i', 'v', 'x', 't' }, '<Esc><Esc>', '<C-c>', { desc = 'Exit everything ' })
+
+-- quit with Qa in command mode, this is to manage my dyslexia :grin:
+vim.cmd 'command! Qa quitall'
+
+--

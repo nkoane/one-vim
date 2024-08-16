@@ -13,7 +13,7 @@ return {
       {
         '<leader>bf',
         function()
-          require('conform').format { async = true, lsp_fallback = true, timeout_ms = 5000 }
+          require('conform').format { async = true, lsp_fallback = false, timeout_ms = 5000 }
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -29,7 +29,8 @@ return {
         local disable_filetypes = { c = true, cpp = true }
         return {
           timeout_ms = 1500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+          lsp_fallback = false,
+          -- lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
       format_after_save = function(bufnr)
@@ -38,6 +39,7 @@ return {
         end
         return { timeout_ms = 5000, lsp_fallback = true }
       end,
+      formatters = {},
       formatters_by_ft = {
         lua = { 'stylua' },
 
@@ -49,7 +51,7 @@ return {
         svelte = { 'prettierd', 'prettier', stop_after_first = true },
 
         blade = { 'blade-formatter', stop_after_first = true },
-        php = { 'pint', 'phpcbf', 'php_cs_fixer', stop_after_first = true },
+        php = { 'phpcbf', 'php_cs_fixer', stop_after_first = true },
 
         rust = { 'rustfmt', stop_after_first = true },
 

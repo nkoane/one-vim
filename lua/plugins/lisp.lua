@@ -1,24 +1,26 @@
 -- NOTE: Here is where you install your plugins.
 
 local servers = {
-  tsserver = {},
+  -- tsserver = {},
   svelte = {},
-  cssls = {},
-  emmet_language_server = {},
-  tailwindcss = {},
+  -- cssls = {},
+  -- emmet_language_server = {},
+  -- tailwindcss = {},
 
-  intelephense = {
-    cmd = { 'intelephense', '--stdio' },
+  -- intelephense = {
+  --   cmd = { 'intelephense', '--stdio' },
+  --   filetypes = { 'php', 'blade' },
+  -- },
+
+  phpactor = {
     filetypes = { 'php', 'blade' },
   },
 
-  -- phpactor = {},
-
-  stimulus_ls = {
-    filetypes = { 'php', 'blade' },
-  },
-
-  rust_analyzer = {},
+  -- stimulus_ls = {
+  --   filetypes = { 'php', 'blade' },
+  -- },
+  --
+  -- rust_analyzer = {},
 
   lua_ls = {},
 }
@@ -57,19 +59,21 @@ return {
 
       ensure_installed = {
         -- LSP
-        'tsserver', -- Used for TypeScript
-        'intelephense', -- Used for PHP
-        'tailwindcss-language-server', -- Used for TailwindCSS
+        -- 'tsserver', -- Used for TypeScript
+        -- 'intelephense', -- Used for PHP
+        -- 'tailwindcss-language-server', -- Used for TailwindCSS
         -- DAP
-        'php-debug-adpter',
-        -- Linters
-        'tlint',
-        'biome',
+        -- 'php-debug-adpter',
 
+        -- Linters
+        -- 'tlint',
+        -- 'biome',
+        -- 'phpcs',
+        --
         -- Formatters
-        'prettierd',
-        'sql-formatter',
-        'tlint',
+        -- 'prettierd',
+        -- 'sql-formatter',
+        -- 'tlint',
       },
     },
   },
@@ -83,10 +87,10 @@ return {
       'williamboman/mason-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
     },
-    config = function()
-      local lsp = require 'lspconfig'
-      local configs = require 'lspconfig.configs'
-      local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+    config = function() -- lsp config
+      -- local lsp = require 'lspconfig'
+      -- local configs = require 'lspconfig.configs'
+      -- local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -94,18 +98,18 @@ return {
           local map = function(keys, func, desc)
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
-          -- map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
-          -- map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
-          -- map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
+          map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
+          map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
+          map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
           -- map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
           -- map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
           -- map('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
-          -- map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>br', vim.lsp.buf.rename, '[R]e[n]ame')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
           --
-          -- -- WARN: This is not Goto Definition, this is Goto Declaration.
-          -- --  For example, in C this would take you to the header.
-          -- map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          -- WARN: This is not Goto Definition, this is Goto Declaration.
+          --  For example, in C this would take you to the header.
+          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
@@ -139,7 +143,6 @@ return {
         end,
       })
 
-
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
@@ -147,11 +150,17 @@ return {
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-        'tlint', -- Used to format blade
-        'blade-formatter', -- Used to format blade
-        'prettier', -- Used to format javascript, typescript, css, html, svelte
-        'prettierd', -- Used to format javascript, typescript, css, html, svelte
+        -- FIX: these don't belong here refractor to formmatter.lua
+        'stylua', -- lua formatter
+        'phpcs', -- php linter
+        'php-cs-fixer', -- php formatter
+        'prettier', -- html, css, ts, et al formatter
+        -- 'stylua', -- Used to format Lua code
+        -- 'prettier', -- Used to format javascript, typescript, css, html, svelte
+        -- 'prettierd', -- Used to format javascript, typescript, css, html, svelte
+        -- 'php-cs-fixer',
+        -- 'phpcs',
+        -- php = { 'pint', 'phpcbf', 'php_cs_fixer', stop_after_first = true },
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

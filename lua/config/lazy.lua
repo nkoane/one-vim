@@ -15,6 +15,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.cmd 'colorscheme retrobox'
+
 -- Setup lazy.nvim
 require('lazy').setup {
   spec = {
@@ -27,29 +29,31 @@ require('lazy').setup {
     { import = 'plugins/which-key' },
     { import = 'plugins/fzf-lua' },
     { import = 'plugins/dressing' },
-
+    --
     { import = 'plugins/git-signs' },
     { import = 'plugins/autopairs' }, -- this adds pairs of quotes, brackets, et al
-
+    --
     { import = 'plugins/persist' }, -- the following plugin is for persisting the session
 
     { import = 'plugins/notify' },
-    { import = 'plugins/lualine' },
     { import = 'plugins/noice' },
+
+    { import = 'plugins/lualine' },
     { import = 'plugins/flash' },
     { import = 'plugins/trouble' },
-
+    --
     { import = 'plugins/dashboard' },
     { import = 'plugins/neotree' },
     { import = 'plugins/comments' },
-
+    --
     { import = 'plugins/treesitter' },
+    { import = 'plugins/lint' },
     { import = 'plugins/lisp' },
     { import = 'plugins/formatter' },
     { import = 'plugins/completion' },
-    -- { import = 'plugins/copilot' },
+    { import = 'plugins/copilot' },
 
-    -- { import = 'plugins/lazygit' },
+    { import = 'plugins/lazygit' },
 
     -- extra
 

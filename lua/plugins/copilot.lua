@@ -2,7 +2,7 @@ return {
   -- 'github/copilot.vim',
   {
     'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
+    cmd = 'Copilot enable',
     event = 'InsertEnter',
     config = function()
       require('copilot').setup {
