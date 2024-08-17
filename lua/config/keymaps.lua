@@ -38,9 +38,13 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- better exit: <Esc><Esc> show exit everything and anything, in all modes
-vim.keymap.set({ 'n', 'i', 'v', 'x', 't' }, '<Esc><Esc>', '<C-c>', { desc = 'Exit everything ' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<Esc><Esc>', '<C-c>', { desc = 'Exit everything ' })
 
 -- quit with Qa in command mode, this is to manage my dyslexia :grin:
 vim.cmd 'command! Qa quitall'
 
+-- vim expressions
+-- iab <expr> ddate strftime("%c")
+-- iab <expr> ttime strftime("%H:%M")
+-- iab <expr> ptime strftime("%l:%M %p")
 --

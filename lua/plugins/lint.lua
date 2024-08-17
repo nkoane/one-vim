@@ -8,6 +8,10 @@ return {
         markdown = { 'markdownlint', 'vale' },
         yaml = { 'yamllint' },
         php = { 'phpcs' },
+        toml = { 'taplo', 'harper-ls' },
+        javascript = { 'biome' },
+        html = { 'htmlhint' },
+        css = { 'ast_grep' },
       }
 
       vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
@@ -15,17 +19,23 @@ return {
           require('lint').try_lint()
         end,
       })
+      require('lspconfig').harper_ls.setup {
+        settings = {
+          ['harper-ls'] = {
+            linters = {
+              spell_check = false,
+            },
+          },
+        },
+      }
 
-      local noice = require 'noice'
+      -- just notification on status line
 
       local progress = function()
         local linters = require('lint').get_running()
         if #linters == 0 then
-          --          noice.redirect ('󰦕')
           return '󰦕'
         end
-
-        --       noice.redirect('󱉶 ' .. table.concat(linters, ', '))
         return '󱉶 ' .. table.concat(linters, ', ')
       end
 

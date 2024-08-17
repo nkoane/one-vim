@@ -11,11 +11,25 @@ local servers = {
   --   cmd = { 'intelephense', '--stdio' },
   --   filetypes = { 'php', 'blade' },
   -- },
+  taplo = {
+    filetypes = { 'toml' },
+  },
+
+  harper_ls = {
+    filetypes = { 'toml', 'markdown', 'yaml', 'html' },
+  },
 
   phpactor = {
     filetypes = { 'php', 'blade' },
   },
 
+  tailwindcss = {},
+  emmet_language_server = {},
+  biome = {},
+  html = {},
+  htmlhint = {},
+  cssls = {},
+  ast_grep = {},
   -- stimulus_ls = {
   --   filetypes = { 'php', 'blade' },
   -- },
@@ -155,6 +169,8 @@ return {
         'phpcs', -- php linter
         'php-cs-fixer', -- php formatter
         'prettier', -- html, css, ts, et al formatter
+        'stylelint', -- css linter
+        'biome',
         -- 'stylua', -- Used to format Lua code
         -- 'prettier', -- Used to format javascript, typescript, css, html, svelte
         -- 'prettierd', -- Used to format javascript, typescript, css, html, svelte
